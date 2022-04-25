@@ -92,10 +92,13 @@ public class question4 {
 			double denominator2 = Denominator(result.get(i).getLinkedMap());
 //				System.out.println(i + " : " + denominator2);
 			double numerator = Numerator(result.get(fileIndex).getLinkedMap(), result.get(i).getLinkedMap());
-			
 			resultDATA.put(fileName[i], numerator/(denominator*denominator2));
 		}
 		
+		
+		for(Entry<String, Double> elem : resultDATA.entrySet()){ 
+			System.out.println(elem.getKey() + " : " + elem.getValue());
+		}
 
 		sc.close();
 	}
@@ -107,9 +110,12 @@ public class question4 {
 	*/
 	public static double Denominator(LinkedHashMap<String, Float> map) {
 		double result = 0;
+		int cnt = 0;
 		
 		for(Entry<String, Float> elem : map.entrySet()){ 
 			result = result + (elem.getValue() * elem.getValue());
+			cnt++;
+			if(cnt == topScore) {return Math.sqrt(result);}
 		}
 
 		return Math.sqrt(result);
@@ -123,10 +129,13 @@ public class question4 {
 	*/
 	public static double Numerator(LinkedHashMap<String, Float> map1, LinkedHashMap<String, Float> map2) {
 		double result = 0;
+		int cnt = 0;
 		for(Entry<String, Float> elem : map1.entrySet()){ 
 			if(map2.containsKey(elem.getKey())) {
 				result = result + (elem.getValue() * map2.get(elem.getKey()));
 			}
+			cnt++;
+			if(cnt == topScore) { return result; }
 		}
 		
 		return result;
