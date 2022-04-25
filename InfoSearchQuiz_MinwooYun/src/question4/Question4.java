@@ -11,27 +11,31 @@ import java.util.Map.Entry;
 import question1.Question1;
 import settingfile.SettingFile;
 
-public class question4 {
-	private static String URL = SettingFile.URL;
+public class Question4 {
+	public static String URL = SettingFile.URL;
 	private static int fileIndex;
 //	사용할 상위 스코어 수
 	private static int topScore = 5;
 	
 	public static void main(String[] args) {
+		progress(SettingFile.URL);
+	}
+	
+	public static void progress(String Link) {
+//		사용자에게 알파벳값을 입력받는다.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("문서 이름을 입력하세요 : ");
+		String word = sc.next();
+		
+		URL = Link;
 //		모든 파일들을 하나의 리스트안에 저장
 		List<SettingFile> list = new ArrayList<SettingFile>();
-		List<HashMap<String, Integer>> listMap = new ArrayList<HashMap<String, Integer>>();
 		HashMap<String, Double> resultDATA = new HashMap<String, Double>();
 //		사용자가 지정한 폴더안에 존재하는 모든 파일리스트 반환
 		String[] fileName = SettingFile.getFileName(URL);
 		for(String name : fileName) {
 			list.add(new SettingFile(name, URL));
 		}
-		
-//		사용자에게 알파벳값을 입력받는다.
-		Scanner sc = new Scanner(System.in);
-		System.out.print("문서 이름을 입력하세요 : ");
-		String word = sc.next();
 		
 //		파일 존재여부 검사
 		boolean flag = true;
@@ -73,14 +77,7 @@ public class question4 {
 			result.add(tfidf);
 			tfidf.MapSort();
 		}		
-		
-//		for(TFIDF data : result) {
-//			for(Entry<String, Float> elem : data.getLinkedMap().entrySet()){ 
-//				System.out.print(elem.getKey() + ":" + elem.getValue() + " ");
-//			}
-//			System.out.println();
-//		}
-		
+				
 //		기준이 되는 문서의 분모 계산
 		double denominator = Denominator(result.get(fileIndex).getLinkedMap());
 		
@@ -99,8 +96,7 @@ public class question4 {
 		for(Entry<String, Double> elem : resultDATA.entrySet()){ 
 			System.out.println(elem.getKey() + " : " + elem.getValue());
 		}
-
-		sc.close();
+//		sc.close();
 	}
 	
 	/*

@@ -2,13 +2,10 @@ package question2;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Stream;
 
 import settingfile.*;
 
@@ -19,6 +16,21 @@ public class Question2 {
 
 
 	public static void main(String[] args) {
+//		사용자에게 알파벳값을 입력받는다.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("알파벳을 입력하세요 : ");
+		String word = sc.next();
+		if(!SettingFile.getType(word)) {
+			System.out.println("err : 한글/숫자가 입력되었습니다.");
+			System.exit(0);
+		}
+		
+		progress(word);
+
+		sc.close();
+	}
+	
+	public static void progress(String word) {
 //		모든 파일들을 하나의 리스트안에 저장
 		List<SettingFile> list = new ArrayList<SettingFile>();
 //		사용자가 지정한 폴더안에 존재하는 모든 파일리스트 반환
@@ -26,16 +38,6 @@ public class Question2 {
 		for(String name : fileName) {
 			list.add(new SettingFile(name, URL));
 		}
-		
-//		사용자에게 알파벳값을 입력받는다.
-		Scanner sc = new Scanner(System.in);
-		System.out.print("알파벳을 입력하세요 : ");
-		String word = sc.next().toUpperCase();
-		if(word.length() > 1 || !SettingFile.getType(word)) {
-			System.out.println("err : 1단어 이상 또는 한글/숫자가 입력되었습니다.");
-			System.exit(0);
-		}
-		
 		
 		for(SettingFile data : list) {
 //			가중치 값만큼 인덱스 값들을 구한다.
@@ -47,7 +49,6 @@ public class Question2 {
 		LinkedHashMap<String, Integer> result =  sortedMap(resultHashMap);
 		System.out.print("모든 문서 = ");
 		result.entrySet().stream().forEach(e -> System.out.print(e.getKey() + ":" + e.getValue() + " "));
-		sc.close();
 	}
 	
 	/*

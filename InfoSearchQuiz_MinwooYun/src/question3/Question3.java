@@ -17,6 +17,17 @@ public class Question3 {
 	private static double denominator;
 	
 	public static void main(String[] args) {
+//		사용자에게 알파벳값을 입력받는다.
+		Scanner sc = new Scanner(System.in);
+		System.out.print("문서 이름을 입력하세요 : ");
+		String word = sc.next();
+		
+		progress(word);
+		
+		sc.close();
+	}
+	
+	public static void progress(String word) {
 //		모든 파일들을 하나의 리스트안에 저장
 		List<SettingFile> list = new ArrayList<SettingFile>();
 		List<HashMap<String, Integer>> listMap = new ArrayList<HashMap<String, Integer>>();
@@ -27,11 +38,6 @@ public class Question3 {
 		for(String name : fileName) {
 			list.add(new SettingFile(name, URL));
 		}
-		
-//		사용자에게 알파벳값을 입력받는다.
-		Scanner sc = new Scanner(System.in);
-		System.out.print("문서 이름을 입력하세요 : ");
-		String word = sc.next();
 		
 //		파일 존재여부 검사
 		boolean flag = true;
@@ -67,8 +73,6 @@ public class Question3 {
 		
 		System.out.println(fileName[fileIndex] + " -> ");
 		sortedMap(result);	
-		
-		sc.close();
 	}
 	
 	/*
