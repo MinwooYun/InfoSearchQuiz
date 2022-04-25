@@ -20,6 +20,7 @@ public class Question3 {
 //		모든 파일들을 하나의 리스트안에 저장
 		List<SettingFile> list = new ArrayList<SettingFile>();
 		List<HashMap<String, Integer>> listMap = new ArrayList<HashMap<String, Integer>>();
+//		문서별 코사인 유사도를 저장할 HashMap
 		HashMap<String, Double> result = new HashMap<String, Double>();
 //		사용자가 지정한 폴더안에 존재하는 모든 파일리스트 반환
 		String[] fileName = SettingFile.getFileName(URL);
@@ -32,6 +33,7 @@ public class Question3 {
 		System.out.print("문서 이름을 입력하세요 : ");
 		String word = sc.next();
 		
+//		파일 존재여부 검사
 		boolean flag = true;
 		for(int i = 0; i < fileName.length; i++) {
 			if(word.equals(fileName[i])) {
@@ -39,7 +41,6 @@ public class Question3 {
 				fileIndex = i;
 			}
 		}
-		
 		if(flag) {
 			System.out.println("존재하는 파일이 없습니다. \n프로그램을 종료합니다.");
 			System.exit(0);
@@ -50,10 +51,12 @@ public class Question3 {
 			listMap.add(getMapCnt(data));
 		}
 		
+//		기준이 되는 문서의 분모 계산
 		denominator = Denominator(listMap.get(fileIndex));
 //		System.out.println("standard : " + denominator);
 		for(int i = 0; i < listMap.size(); i++) {
-			if(i == fileIndex) { continue; }
+//			이미 앞에서 구한 기준문서는 skip
+			if(i == fileIndex) { continue; }		
 			
 			double denominator2 = Denominator(listMap.get(i));
 //			System.out.println(i + " : " + denominator2);
@@ -105,7 +108,6 @@ public class Question3 {
 	 * 설명 : 분자 계산
 	 * 반환 : double
 	*/
-//	분자 계산
 	public static double Numerator(HashMap<String, Integer> map1, HashMap<String, Integer> map2) {
 		double result = 0;
 		for(Entry<String, Integer> elem : map1.entrySet()){ 
@@ -131,6 +133,7 @@ public class Question3 {
 		for(int i = 0; i < data.getFileData().length; i++) {
 			if(map.containsKey(data.getFileData()[i])) {
 				map.put(data.getFileData()[i], map.get(data.getFileData()[i]) + 1);
+//				map.put(data.getFileData()[i], 1);
 			} else {
 				map.put(data.getFileData()[i], 1);
 			}

@@ -48,7 +48,12 @@ public class Question1 {
 		sc.close();
 	}
 	
-//	TF값 계산 (문서 내용, 사용자가 입력한 단어)
+	/*
+	 * 매개변수 : SettingFile, String
+	 * 설명 : TF값 계산 (문서 내용, 사용자가 입력한 단어) 
+	 * 수식 : 문서내 단어수 / 문서내 모든 단어수
+	 * 반환 : float
+	*/
 	public static float getTF(SettingFile data, String word) {	
 //		문서의 모든 단어수
 		float allCount = data.getFileData().length;
@@ -60,8 +65,12 @@ public class Question1 {
 		return wordCount/allCount;
 	}
 	
-	
-//	IDF값 계산 (TF값이 저장된 list)
+	/*
+	 * 매개변수 : List<Float>
+	 * 설명 : IDF값 계산 (매개변수는 TF값이 저장된 list)
+	 * 수식 : log(1 + (문서 전체수 / 단어를 포함한 문서수)
+	 * 반환 : float
+	*/
 	public static float getIDF(List<Float> TFlist) {
 		
 //		TF값이 0이면 단어가 없다는 뜻이므로 +1을 안한다.

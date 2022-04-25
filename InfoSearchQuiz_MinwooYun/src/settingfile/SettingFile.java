@@ -11,7 +11,7 @@ public class SettingFile {
 //	파일 데이터
 	private String[] fileData;
 //	파일 경로
-	public static String URL = "C:\\Users\\yunms\\git\\InfoSearchQuiz\\첨부파일1";
+	public static String URL = "C:\\Users\\yun\\git\\InfoSearchQuiz\\첨부파일1";
 	
 	/*
 	 * 매개변수 : fileName(파일 이름), URL(파일 URL)
@@ -75,5 +75,5 @@ public class SettingFile {
 	*/
 	public String getFileName() { return this.fileName; }
 	public String[] getFileData() { return this.fileData; }
-	public String getURL() { return this.URL; }
+	public String getURL() { return SettingFile.URL; }
 }

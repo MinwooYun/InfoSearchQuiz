@@ -1,7 +1,6 @@
 package question5;
 
 import java.util.Scanner;
-import question5.Q1;
 
 public class Question5 {
 	
@@ -16,13 +15,13 @@ public class Question5 {
 			
 			switch(number) {
 				case "1":
-					Q1.StartQ1(input.substring(2));
+					AllQuestion.StartQ1(input.substring(2));
 					break;
 				case "2":
-					String word2 = input.substring(2);
+					AllQuestion.StartQ2(input.substring(2));
 					break;
 				case "3":
-					String word3 = input.substring(2);
+					AllQuestion.StartQ3(input.substring(2));
 					break;
 				case "4":
 					System.out.println();
@@ -34,6 +33,7 @@ public class Question5 {
 			sc.nextLine();
 			
 		}
+		sc.close();
 
 	}
 

@@ -2,10 +2,13 @@ package question2;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 import settingfile.*;
 
@@ -50,6 +53,7 @@ public class Question2 {
 	/*
 	 * 매개변수 : HashMap<String, Integer>
 	 * 설명 : HashMap에 저장된 Value (Integer)값들을 내림차순으로 정렬
+	 * 매개변수 T는 숫자만 받는다 (Integer, Float, Double)
 	 * 반환 : LinkedHashMap<String, Integer>
 	*/
 	public static LinkedHashMap<String, Integer> sortedMap(HashMap<String, Integer> map) {
